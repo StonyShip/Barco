@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StonyStore - Accesorios Gamer</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #1a1a1a; color: white; text-align: center; }
+        .header { background: #ff6600; padding: 20px; font-size: 24px; font-weight: bold; display: flex; align-items: center; justify-content: center; gap: 15px; }
+        .header img { height: 60px; }
+        .nav { background: #333; padding: 10px; }
+        .nav a, .button { color: white; text-decoration: none; margin: 15px; padding: 10px; background: #ff6600; border: none; cursor: pointer; display: inline-block; }
+        .container { padding: 20px; }
+        .product { border: 1px solid #ff6600; padding: 20px; margin: 20px; display: inline-block; background: #222; }
+        .cart { margin-top: 20px; padding: 20px; background: #444; }
+        .footer { background: #ff6600; padding: 10px; margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <img src="Logo SS.jpg" alt="Logo StonyStore">
+        <span>🕹️ StonyStore - Accesorios para Consolas y PC 🎮</span>
+    </div>
+    
+    <div class="nav">
+        <a href="#productos">Productos</a>
+        <a href="#nosotros">Nosotros</a>
+        <a href="#contacto">Contacto</a>
+        <a href="#inicio">Inicio</a>
+    </div>
+    
+    <div class="container" id="productos">
+        <h2>Catálogo de Productos</h2>
+        <div class="product" id="prod1">
+            <h3>Control Inalámbrico</h3>
+            <p>$50.00</p>
+            <button onclick="addToCart('Control Inalámbrico', 50)">Agregar al Carrito</button>
+        </div>
+        <div class="product" id="prod2">
+            <h3>Teclado Mecánico RGB</h3>
+            <p>$80.00</p>
+            <button onclick="addToCart('Teclado Mecánico RGB', 80)">Agregar al Carrito</button>
+        </div>
+        <div class="product" id="prod3">
+            <h3>Mouse Gamer</h3>
+            <p>$40.00</p>
+            <button onclick="addToCart('Mouse Gamer', 40)">Agregar al Carrito</button>
+        </div>
+        <div class="product" id="prod4">
+            <h3>Auriculares Gaming</h3>
+            <p>$60.00</p>
+            <button onclick="addToCart('Auriculares Gaming', 60)">Agregar al Carrito</button>
+        </div>
+        <div class="product" id="prod5">
+            <h3>Tarjeta Gráfica RTX 3060</h3>
+            <p>$350.00</p>
+            <button onclick="addToCart('Tarjeta Gráfica RTX 3060', 350)">Agregar al Carrito</button>
+        </div>
+        <div class="product" id="prod6">
+            <h3>Silla Gamer RGB</h3>
+            <p>$250.00</p>
+            <button onclick="addToCart('Silla Gamer RGB', 250)">Agregar al Carrito</button>
+        </div>
+    </div>
+    
+    <div class="cart">
+        <h2>Carrito de Compras</h2>
+        <ul id="cart-items"></ul>
+        <p>Total: $<span id="total">0.00</span></p>
+        <button class="button" onclick="clearCart()">Vaciar Carrito</button>
+    </div>
+    
+    <div class="container" id="nosotros">
+        <h2>Nosotros</h2>
+        <p><strong>Misión:</strong> Proveer accesorios de alta calidad para gamers y entusiastas de la tecnología.</p>
+        <p><strong>Visión:</strong> Ser la tienda número uno en Latinoamérica para accesorios de consolas y PC.</p>
+        <p><strong>Valores:</strong> Innovación, calidad y compromiso con nuestros clientes.</p>
+        <button class="button" onclick="window.location.href='#productos'">Ver Productos</button>
+    </div>
+    
+    <div class="container" id="contacto">
+        <h2>Contacto</h2>
+        <p>📍 Ubicación: Calle Ficticia 123, Ciudad Gamer</p>
+        <p>📧 Email: contacto@stonystore.com</p>
+        <button class="button" onclick="window.location.href='#inicio'">Regresar al Inicio</button>
+    </div>
+    
+    <div class="footer">© 2025 StonyStore - Todos los derechos reservados</div>
+    
+    <script>
+        let cart = [];
+        function addToCart(name, price) {
+            cart.push({ name, price });
+            updateCart();
+        }
+        function updateCart() {
+            let cartList = document.getElementById('cart-items');
+            let total = 0;
+            cartList.innerHTML = '';
+            cart.forEach(item => {
+                let li = document.createElement('li');
+                li.innerText = `${item.name} - $${item.price}`;
+                cartList.appendChild(li);
+                total += item.price;
+            });
+            document.getElementById('total').innerText = total.toFixed(2);
+        }
+        function clearCart() {
+            cart = [];
+            updateCart();
+        }
+    </script>
+</body>
+</html>
